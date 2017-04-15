@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+		
+	<context:component-scan base-package="com.controller" />
+	
+	<!-- Initialization for data source -->
+   <bean id="dataSource" 
+      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="org.postgresql.Driver"/>
+      <property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
+      <property name="username" value="postgres"/>
+      <property name="password" value="postgres"/>
+   </bean>
+
+   <!-- Definition for studentJDBCTemplate bean 
+   <bean id="studentJDBCTemplate" 
+      class="com.jdbcTemplates.StudentJDBCTemplate">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   -->
+	<bean class="com.service.MyManagerImpl" id="myManager" autowire="byType">  
+	</bean>
+	<bean class="com.dao.MyDaoImpl" id="myDao" autowire="byType"/> 
+	 
+    <bean id="loginValidator" class="com.validator.LoginValidator"/>
+    
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/jsp/" />
+      <property name="suffix" value=".jsp" />
+   </bean>
+   <!-- HandlerExceptionResolver implementation that allows for mapping exception class names to view names, either for a set of given handlers or for all handlers in the DispatcherPortlet. -->
+   <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	   <property name="exceptionMappings">
+	      <props>
+	         <prop key="com.exception.MySpringException"><!-- known exception thrown (user define exception thrown) -->
+	            error/exceptionPage
+	         </prop>
+	      </props>
+	   </property>
+	   <property name="defaultErrorView" value="error/error"/><!-- unknown exception thrown -->
+	</bean>
+</beans>

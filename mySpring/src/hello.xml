@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   
+	<bean id="helloBean" class="com.developersBook.springExample.bean.HelloBean">
+		
+		<property name="helloService">
+			<ref bean="helloService"/>
+		</property>
+		<property name="byeService">
+			<ref bean="byeService"/>
+		</property>
+	</bean>
+	<bean id="user" class="com.User" scope="prototype" init-method="init" destroy-method="destroy" >
+		<property name="name" value="Ashish Ranjan Prasad"></property>
+		<property name="roll" value="1083"></property>
+	</bean>
+	<bean id="bemoBeanTypeTwo" class="com.mySpring.BemoBeanTypeTwo" scope="singleton">
+	</bean>
+	<bean id="helloService" class="com.developersBook.springExample.serviceImpl.HelloServiceImpl" />
+	<bean id="byeService" class="com.developersBook.springExample.serviceImpl.ByeServiceImpl"/>
+	
+	<!-- 
+	<bean id="aTest" class="com.myCollections.ATest">
+		<property name="b" ref="bTest"></property>
+		<property name="c" ref="cTest"></property>
+	</bean>
+	<bean id="bTest" class="com.myCollections.BTest" parent="aTest">
+		<property name="a" ref="aTest"></property>
+	</bean>
+	<bean id="cTest" class="com.myCollections.CTest" parent="bTest">
+		<property name="b" ref="bTest"></property>
+	</bean>
+ -->	
+	<bean id="aTest" class="com.myCollections.ATest">
+		<property name="b" ref="bTest"></property>
+		<property name="c" ref="cTest"></property>
+	</bean>
+	<bean id="bTest" class="com.myCollections.BTest" parent="aTest">
+		<property name="a" ref="aTest"></property>
+	</bean>
+	<bean id="cTest" class="com.myCollections.CTest" parent="bTest">
+		<property name="b" ref="bTest"></property>
+	</bean>
+	
+	<!-- Definition for javaCollection -->
+   <bean id="javaCollection" class="com.myCollections.JavaCollection">
+
+      <!-- results in a setAddressList(java.util.List) call -->
+      <property name="addressList">
+        <list>
+           <value>INDIA</value>
+           <value>Pakistan</value>
+           <value>USA</value>
+           <value>USA</value>
+        </list>
+      </property>
+
+     <!-- results in a setAddressSet(java.util.Set) call -->
+     <property name="addressSet">
+        <set>
+           <value>INDIA</value>
+           <value>Pakistan</value>
+           <value>USA</value>
+           <value>USA</value>
+        </set>
+      </property>
+
+     <!-- results in a setAddressMap(java.util.Map) call -->
+     <property name="addressMap">
+        <map>
+           <entry key="1" value="NDIA"/>
+           <entry key="2" value="Pakistan"/>
+           <entry key="3" value="USA"/>
+           <entry key="4" value="USA"/>
+        </map>
+      </property>
+
+     <!-- results in a setAddressProp(java.util.Properties) call -->
+     <property name="addressProp">
+        <props>
+           <prop key="one">INDIA</prop>
+           <prop key="two">Pakistan</prop>
+           <prop key="three">USA</prop>
+           <prop key="four">USA</prop>
+        </props>
+      </property>
+
+   </bean>
+</beans>

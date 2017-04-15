@@ -39,6 +39,7 @@ public class myController{
       
       return "updateUser";
    }
+   //http://localhost:8082/mySpring/firstSpringTest/getUserList/
    @RequestMapping(value="/getUserList",method=RequestMethod.GET )
    public String getUserList(ModelMap model){
 	   List<Student> lstUser=myManager.getUserList();

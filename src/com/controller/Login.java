@@ -20,7 +20,7 @@ public class Login {
 	
 	@Autowired
 	LoginValidator loginValidator;
-	
+	//http://localhost:8082/mySpring/login/loginInit
 	@RequestMapping(value="/loginInit", method=RequestMethod.GET)
 	public ModelAndView loginInit(ModelMap model){
 		System.out.println("loginInit.....");

@@ -16,7 +16,7 @@
       <property name="driverClassName" value="org.postgresql.Driver"/>
       <property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
       <property name="username" value="postgres"/>
-      <property name="password" value="postgres"/>
+      <property name="password" value="infotech@123"/><!-- 'infotech@123' in office;;;; postgres at home laptop -->
    </bean>
 
    <!-- Definition for studentJDBCTemplate bean 
